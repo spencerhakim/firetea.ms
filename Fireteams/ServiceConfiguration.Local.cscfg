@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Fireteams" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="Fireteams.Web">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DbUrl" value="####################" />
+      <Setting name="DbKey" value="####################" />
+      <Setting name="SBConnection" value="Endpoint=####################;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=####################" />
+      <Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="MessageDate" value="5/21/2015 8:00:00 AM -05:00" />
+      <Setting name="MessageText" value=" - Added Prison of Elders (32+)&lt;br /&gt; - Added Trials of Osiris (only available from Friday 10AM PST until Weekly Reset)&lt;br /&gt; - Updated minimum levels for various activities&lt;br /&gt; - Removed Class selection (wasn't used anyway)" />
+      <Setting name="ShowAds" value="false" />
+      <Setting name="TrackingID" value="UA-12455646-9" />
+      <Setting name="QueueSleepMin" value="10" />
+      <Setting name="QueueSleepMax" value="1000" />
+      <Setting name="QueueSleepLength" value="50" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="Fireteams" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="Fireteams.Web" vmsize="ExtraSmall">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+    </Endpoints>
+    <Startup priority="-2">
+      <Task commandLine="Startup\UnifiedBootstrap.bat" executionContext="elevated" taskType="simple" />
+      <Task commandLine="Startup\UnlockHttpErrors.cmd" executionContext="elevated" taskType="simple" />
+    </Startup>
+    <ConfigurationSettings>
+      <Setting name="DbUrl" />
+      <Setting name="DbKey" />
+      <Setting name="SBConnection" />
+      <Setting name="StorageConnectionString" />
+      <Setting name="MessageDate" />
+      <Setting name="MessageText" />
+      <Setting name="ShowAds" />
+      <Setting name="TrackingID" />
+      <Setting name="QueueSleepMin" />
+      <Setting name="QueueSleepMax" />
+      <Setting name="QueueSleepLength" />
+    </ConfigurationSettings>
+  </WebRole>
+</ServiceDefinition>

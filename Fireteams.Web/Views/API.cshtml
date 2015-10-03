@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>API</h2>
+<p>
+    <strong>Firetea.ms</strong> uses <a href="http://signalr.net/" title="ASP.NET SignalR" target="_blank">SignalR</a>
+    as for client-server communication. Although developed by Microsoft primarily in C#, it is open source and licensed under the
+    <a href="http://www.apache.org/licenses/LICENSE-2.0" title="Apache License, Version 2.0" target="_blank">Apache 2.0 License</a>,
+    with third-party libraries available for use with other languages/platforms.
+</p>
+<ul>
+    <li>
+        <a href="https://github.com/SignalR/java-client" title="SignalR/java-client" target="_blank">SignalR/java-client</a> - Java client library
+    </li>
+    <li>
+        <a href="https://github.com/DyKnow/SignalR-ObjC" title="DyKnow/SignalR-ObjC" target="_blank">DyKnow/SignalR-ObjC</a> - Objective-C client library
+    </li>
+    <li>
+        <a href="https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client" title="Microsoft.AspNet.SignalR.Client" target="_blank">Microsoft.AspNet.SignalR.Client</a> - C# client library
+    </li>
+</ul>
+<p>
+    The API is located at the SignalR default path of <kbd>//firetea.ms/signalr</kbd>, under the SignalR Hub named <kbd>v1</kbd>.
+    The current version is (obviously) v1. This API is stable. Party objects are verified server-side, and errors are reported back to the client.
+</p>
+
+<h4>Terms of Use</h4>
+<ul>
+    <li>
+        You MAY display ads within your app. However, your app MUST be made available free of charge. In App Purchases to disable ads MAY be provided.
+    </li>
+    <li>
+        You MUST display <em>"Powered by <strong>Firetea.ms</strong>"</em> within your app. Additionally, you MUST provide a link to <strong>Firetea.ms</strong>
+        within your app.
+    </li>
+    <li>
+        You MUST specify a <kbd>client</kbd> parameter to the SignalR connection query string. This SHOULD take the form of a web address unique to your app.
+        Clients without this parameter will be rejected.
+    </li>
+    <li>
+        If you are found to be violating these terms or otherwise abusing the service, your app's <kbd>client</kbd> ID will be blocked.
+    </li>
+</ul>
+
+<h4>API v1 Reference (in C#)</h4>
+<code class="highlight">
+    // Client-side interface - MUST be implemented by your app
+    interface IClientV1
+    {
+        // Alert messages of varying importance
+        void DisplayInfo(string message);
+        void DisplayWarning(string message);
+        void DisplayError(string message);
+
+        // Search status messages (e.g., "Searching", "Evaluating")
+        void UpdateStatus(string text);
+
+        // Search progress (e.g., "1/6", "2/3", etc.)
+        void UpdateProgress(int currentUsers, int totalNeeded);
+
+        // Called when a full match is found
+        // (IEnumerable<> is serialized as a simple array)
+        void MatchFound(IEnumerable&lt;Party&gt; parties);
+    }
+
+    // Server-side interface
+    interface IHubV1
+    {
+        // Call when entering matchmaking.
+        // Returns true if registered successfully, false otherwise.
+        // DisplayError will be called by the server if this returns false
+        bool Register(Party party);
+
+        // Call to get the average time until a match
+        string GetTimeToMatch();
+    }
+
+    class Party
+    {
+        [Required]
+        public Language Language { get; set; }
+
+        [Required]
+        public Platform Platform { get; set; }
+
+        [Required]
+        public Activity Activity { get; set; }
+
+        [Required, Range(1, 5)]
+        public int PartySize { get; set; }
+
+        [Required, RegularExpression(@@"[A-Za-z][\w\- ]{0,15}")]
+        public string Username { get; set; }
+
+        [Required]
+        public GuardianClass GuardianClass { get; set; }
+
+        [Required, Range(20, 32)]
+        public int Level { get; set; }
+    }
+
+    enum Language
+    {
+        English,
+        Dansk,      //Danish
+        Deutsch,    //German
+        Español,    //Spanish
+        Français,   //French
+        Italiano,   //Italian
+        Nederlands, //Dutch
+        Norsk,      //Norwegian
+        Polski,     //Polish
+        Português,  //Portugese
+        Pyccкий,    //Russian
+        Suomi,      //Finnish
+        Svenska,    //Swedish
+        Türkçe,     //Turkish
+        العربية,    //Arabic
+        日本語,      //Japanese
+        한국어,      //Korean
+        普通话       //Chinese
+    }
+
+    enum Platform
+    {
+        PlayStation3,
+        PlayStation4,
+        Xbox360,
+        XboxOne
+    }
+
+    enum Activity
+    {
+        DailyStory,
+        WeeklyStrike,
+        WeeklyNightfall,
+        VaultOfGlass,
+        VaultOfGlassHard,
+        CrotasEnd,
+        CrotasEndHard,
+    }
+
+    enum GuardianClass
+    {
+        Hunter,
+        Titan,
+        Warlock
+    }
+</code>
+
+<script>
+$(document).ready(function(){
+    $('code.highlight').each(function(i, block){
+        var $block = $(block);
+        hljs.highlightBlock(block);
+
+        $block.html(
+            $block.html()
+                .trim()
+                .replace(/\n/g, '<br>\n')
+                .replace(/\n\s{4}/g, '\n')
+        );
+
+        $block.contents()
+            .filter(function(){ 
+                return this.nodeType == 3; //text nodes
+            })
+            .each(function(){
+                $(this).replaceWith( this.nodeValue.replace(/ /g, '&nbsp;') );
+            });
+    });
+});
+</script>

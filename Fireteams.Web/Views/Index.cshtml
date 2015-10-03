@@ -1,0 +1,116 @@
+﻿@using Fireteams.Common.Models
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div id="updateInfo" class="alert alert-success alert-dismissible" role="alert" style="display:none" data-timestamp="@ViewBag.MessageTimestamp">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong>Update - @ViewBag.MessageDate.ToString("M")</strong><br />
+    @Html.Raw(ViewBag.MessageText)
+</div>
+
+<div id="alert" class="alert" role="alert" style="display:none"></div>
+
+<div id="main" class="step1">
+    <!-- Step 1 - Form -->
+    <form id="mmform" class="form-horizontal" role="form" autocomplete="off">
+        <div id="mmformcontent">
+            <!-- Region -->
+            <div class="form-group">
+                <label for="region-select" class="col-sm-3 control-label">Language</label>
+                <div class="col-sm-9">
+                    <select id="region-select" class="form-control">
+                        @foreach( var item in EnumHelper.GetSelectList(typeof(Language)) )
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Platform -->
+            <div class="form-group">
+                <label for="platform-select" class="col-sm-3 control-label">Platform</label>
+                <div class="col-sm-9">
+                    <select id="platform-select" class="form-control">
+                        @foreach( var item in EnumHelper.GetSelectList(typeof(Platform)) )
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Activity -->
+            <div class="form-group">
+                <label for="activity-select" class="col-sm-3 control-label">Activity</label>
+                <div class="col-sm-9">
+                    <select id="activity-select" class="form-control">
+                        @foreach( var item in EnumHelper.GetSelectList(typeof(Activity)) )
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Party size -->
+            <div class="form-group">
+                <label for="partysize-input" class="col-sm-3 control-label">Current Party Size</label>
+                <div class="col-sm-9">
+                    <input type="number" min="1" max="5" value="1" class="form-control" id="partysize-input" placeholder="Party size">
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username-input" class="col-sm-3 control-label">Gamertag/PSN ID</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="username-input" placeholder="Username">
+                </div>
+            </div>
+
+            <!-- Level -->
+            <div class="form-group">
+                <label for="level-input" class="col-sm-3 control-label">Level</label>
+                <div class="col-sm-9">
+                    <input type="number" min="@ViewBag.LevelMin" max="@ViewBag.LevelMax" value="20" class="form-control" id="level-input" placeholder="Level">
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button disabled id="searchbtn" type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <h6 style="text-align: center">
+                    <a href="http://destinylfg.net" target="_blank">Looking for a more specific match?</a>
+                </h6>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+
+    <!-- Step 2 - Searching -->
+    <div id="mmsearching">
+        <h2 id="searchh2">
+            <span id="searchstatus">Searching&hellip;</span>
+            <span id="searchprogress"></span>
+        </h2>
+        <div class="ball"></div>
+        <div class="ball1"></div>
+        <h5>
+            Average time until match:
+            <span id="avgttm">N/A</span>
+        </h5>
+    </div>
+
+    <!-- Step 3 - Results -->
+    <div id="mmresults">
+        <h2>Match Found!</h2>
+        <div id="mmresults2"></div>
+    </div>
+</div>

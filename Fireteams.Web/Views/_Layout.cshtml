@@ -1,0 +1,146 @@
+﻿@using System.Web.Optimization
+@{
+    var actionName = Html.ViewContext.RouteData.GetRequiredString("action");
+}
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Destiny matchmaking for Nightfall, Raids, and more!">
+    <meta name="keywords" content="Destiny, Bungie, matchmaking, nightfall, raid, raids, fireteam, fireteams, guardians, Xbox, PlayStation, online, video games, gaming, fps, first person shooter, aetheon, crota, vault of glass, crota's end, MMO, massively multiplayer online" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Firetea.ms" />
+    <meta property="og:description" content="Destiny matchmaking for Nightfall, Raids, and more!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://firetea.ms/" />
+    <meta property="og:site_name" content="Firetea.ms" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="fb:admins" content="573505159" />
+
+    @Styles.Render(
+        "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css",
+        "~/bundles/css"
+    )
+
+    <script> var _deployId = "@ViewBag.Version"; </script>
+    @Scripts.Render(
+        "//cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/cs.min.js",
+        "~/bundles/script",
+        "~/signalr/hubs"
+    )
+
+    <!--[if lt IE 9]>
+        @Scripts.Render( //IE8 shims, so at least the pages don't look like complete shit
+            "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js",
+            "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
+        )
+    <![endif]-->
+    @switch( actionName )
+    {
+        case "Index":
+            <!--[if lt IE 9]>
+                <meta http-equiv="refresh" content="0;url=/unsupported">
+            <![endif]-->
+            <noscript>
+                <meta http-equiv="refresh" content="0;url=/noscript">
+            </noscript>
+            break;
+    }
+
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function(config) {
+            function s(config) { t[config] = function() { var i = arguments; t.queue.push(function() { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for(o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function(config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "8062678e-93ac-40ea-93f0-01d16bc2ee82"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if(d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/#" title="Firetea.ms">Firetea.ms <span id="beta">beta</span></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapsed">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/help">Help</a></li>
+                            @*<li><a href="/api">API</a></li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @if( ViewBag.ShowAds )
+        {
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Top Banner -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-3465610278832727"
+                         data-ad-slot="1006076490"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="pull-right">
+                        <div class="fb-share-button" data-href="http://firetea.ms" data-layout="button_count"></div>
+                    </div>
+
+                    <div>
+                        <a class="twitter-share-button" href="https://twitter.com/share?url=http%3a%2f%2ffiretea.ms%2f&amp;text=%23Destiny+matchmaking+for+Nightfall%2c+Raids%2c+and+more!">Tweet</a>
+                        <script type="text/javascript">
+                            window.twttr = (function(d, s, id) { var t, js, fjs = d.getElementsByTagName(s)[0]; if(d.getElementById(id)) { return } js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } }) }(document, "script", "twitter-wjs"));
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js")
+</body>
+</html>

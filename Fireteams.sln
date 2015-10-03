@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{580AA0A8-0DAE-4759-B618-008BCE4C345D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Fireteams", "Fireteams\Fireteams.ccproj", "{412C677C-5BBA-463E-94B6-EBA9CE91DDE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fireteams.Web", "Fireteams.Web\Fireteams.Web.csproj", "{79ABE9DF-2846-4087-9561-B6DA7E7B2936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fireteams.Common", "Fireteams.Common\Fireteams.Common.csproj", "{8515719E-DF85-4583-B01D-180831C3786D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{412C677C-5BBA-463E-94B6-EBA9CE91DDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412C677C-5BBA-463E-94B6-EBA9CE91DDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412C677C-5BBA-463E-94B6-EBA9CE91DDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412C677C-5BBA-463E-94B6-EBA9CE91DDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79ABE9DF-2846-4087-9561-B6DA7E7B2936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79ABE9DF-2846-4087-9561-B6DA7E7B2936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79ABE9DF-2846-4087-9561-B6DA7E7B2936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79ABE9DF-2846-4087-9561-B6DA7E7B2936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8515719E-DF85-4583-B01D-180831C3786D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8515719E-DF85-4583-B01D-180831C3786D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8515719E-DF85-4583-B01D-180831C3786D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8515719E-DF85-4583-B01D-180831C3786D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
